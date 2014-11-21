@@ -1,0 +1,35 @@
+import java.io.File
+import java.util.HashMap
+
+Class Document
+{
+
+	private File infile;
+	private Scanner scanner;
+
+	public Document(File f)
+	{
+		infile = f;
+		scanner = new Scanner(f);
+		scanner.useDelimiter(" ");
+	}
+
+	public HashMap<String, int> wordFrequency()
+	{
+		HashMap<String, int> map = new HashMap();
+		while (sc.hasNextLong()) 
+		{
+			String word = sc.nextString();
+			int val = map.get(word);
+			if(val != null)
+			{
+				map.put(word, val+1);
+			}
+			else
+			{
+				map.put(word, 0);
+			}
+      	}
+      	return map;
+	}
+}
