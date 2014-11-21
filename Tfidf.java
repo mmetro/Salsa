@@ -31,7 +31,7 @@ class Tfidf {
 	}
     public static void main(String[] args) {
         HashMap<String, Integer> newMap = new HashMap<String,Integer>();
-        newMap.put("nigger", 1);
+        newMap.put("test1", 1);
         newMap.put("justMike", 2);
         newMap.put("simplyTorch", 3);
         int findt = findTerm(newMap, "simplyTorch");
