@@ -1,0 +1,39 @@
+import java.lang.*;
+import java.io.*;
+import java.lang.String;
+import java.util.HashMap;
+
+
+
+behavior Tfdif {
+	
+	public  int findTerm(HashMap mp, String term){
+		int val =(int)mp.get(term);
+		System.out.println(val);
+		return val;
+	}
+	
+	
+
+	public  double tfidf(double tf, double idf){
+		return tf*idf;
+	}
+	public double tf(int termFreq){
+		if(termFreq >0)
+			return 1+(Math.log10(termFreq));
+		else{
+			return 0;
+		}
+	}
+	public double idf(int noDocs, int termInDoc){
+		noDocs+=2;
+		return Math.log10((noDocs)/(1+termInDoc));
+	}
+    public void main(String[] args) {
+    	File file = new File("1.txt");
+    	Document d = new Document(file);
+        HashMap newMap = d.wordFrequency();
+        newMap.put((String)"simplyTorch", 3);
+        int findt = findTerm(newMap, "simplyTorch");
+    }
+}
