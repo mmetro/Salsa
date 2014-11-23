@@ -12,18 +12,19 @@ import java.util.*;
 
 behavior Tfdif {
 	
+
 	public  int findTerm(HashMap mp, String term){
 		int val =(int)mp.get(term);
 		System.out.println(val);
 		return val;
 	}
 	
+
 	public void iterateHashmap(HashMap mp){
 		Iterator it = mp.entrySet().iterator();
 		while(it.hasNext()){
 			Map.Entry pairs = (Map.Entry)it.next();
         	standardOutput<-println(pairs.getKey() + " = " + pairs.getValue());
-        	
 		}
 	}
 	
@@ -43,12 +44,52 @@ behavior Tfdif {
 		return Math.log10((noDocs)/(1+termInDoc));
 	}
 
+	Object[] getObj(Object[] o)
+	{
+		return o;
+	}
+
+	HashMap[] getHashmaps(Document[] docs)
+	{
+		join
+		{
+			for(int i=0; i < docs.length; i++)
+			{
+				docs[i]<-wordFrequency();
+			} 
+		} @ getObj(token) @ currentContinuation;
+	}
+
     public void act(String[] args) {
+    	HashMap totalMap = new HashMap();
    		File[] files = new File("collection").listFiles();
+		Document[] d = new Document[files.length];
+		standardOutput<-println("BIG DICK!");
    		for(int i =0; i < files.length; i++){
-   			Document d = new Document(files[i]);
-   			d<-wordFrequency() @
-   			iterateHashmap(token);
+   			//standardOutput<-println("On file #" + i);
+   			d[i] = new Document(files[i]);
+		}
+		standardOutput<-println("WHAT THE BITCH!");
+		HashMap[] maps = getHashmaps(d);
+
+   		standardOutput<-println("maps.length = " + maps.length);
+   		for(int i =0; i < files.length; i++){
+   			standardOutput<-println("Summing total #" + i);
+	   		Iterator it = maps[i].entrySet().iterator();
+			while(it.hasNext()){
+				Map.Entry pairs = (Map.Entry)it.next();
+	        	String word = (String)pairs.getKey();
+	        	Object o = totalMap.get(word);
+				if(o != null)
+				{
+					totalMap.put(word, ((int)o)+(int)pairs.getValue());
+				}
+				else
+				{
+					totalMap.put(word, pairs.getValue());
+				}
+			}
    		}
+   		iterateHashmap(totalMap);
     }
 }
