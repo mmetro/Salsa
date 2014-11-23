@@ -17,8 +17,6 @@ behavior Document
 		} catch (Exception e) {
 			standardOutput<-println("Could not open\n");
 		}
-		
-		scanner.useDelimiter(" ");
 	}
 
 	public HashMap wordFrequency()

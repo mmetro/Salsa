@@ -50,7 +50,5 @@ behavior Tfdif {
    			d<-wordFrequency() @
    			iterateHashmap(token);
    		}
-    	
-
     }
 }
