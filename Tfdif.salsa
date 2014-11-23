@@ -46,7 +46,6 @@ behavior Tfdif {
     public void act(String[] args) {
     	Document d = new Document("1.txt");
        	d<-wordFrequency() @ 
-       	standardOutput<-println(token);
        	iterateHashmap(token);
     }
 }
