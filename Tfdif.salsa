@@ -1,3 +1,7 @@
+
+
+module search;
+
 import java.lang.*;
 import java.io.*;
 import java.lang.String;
@@ -29,11 +33,10 @@ behavior Tfdif {
 		noDocs+=2;
 		return Math.log10((noDocs)/(1+termInDoc));
 	}
-    public void main(String[] args) {
-    	File file = new File("1.txt");
-    	Document d = new Document(file);
-        HashMap newMap = d.wordFrequency();
-        newMap.put((String)"simplyTorch", 3);
-        int findt = findTerm(newMap, "simplyTorch");
+
+    public void act(String[] args) {
+    	Document d = new Document("1.txt");
+       	d<-wordFrequency() @ 
+       	standardOutput<-println(token);
     }
 }

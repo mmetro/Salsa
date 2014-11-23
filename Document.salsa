@@ -1,3 +1,5 @@
+module search;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -8,14 +10,15 @@ behavior Document
 	private File infile;
 	private Scanner scanner;
 
-	public Document(File f)
+	public Document(String filename)
 	{
-		infile = f;
 		try {
+			infile = new File(filename);
 			scanner = new Scanner(infile);
 		} catch (Exception e) {
-			
+			standardOutput<-println("Could not open " + filename + "\n");
 		}
+		
 		scanner.useDelimiter(" ");
 	}
 
