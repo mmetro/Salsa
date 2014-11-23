@@ -25,18 +25,17 @@ behavior Document
 	public HashMap wordFrequency()
 	{
 		HashMap map = new HashMap();
-		while (scanner.hasNextLong()) 
+		while (scanner.hasNext()) 
 		{
 			String word = scanner.next();
 			Object o = map.get(word);
-			int val = (int)map.get(word);
 			if(o != null)
 			{
-				map.put(word, val+1);
+				map.put(word, ((int)o)+1);
 			}
 			else
 			{
-				map.put(word, 0);
+				map.put(word, 1);
 			}
       	}
       	return map;
