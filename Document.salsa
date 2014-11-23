@@ -10,13 +10,12 @@ behavior Document
 	private File infile;
 	private Scanner scanner;
 
-	public Document(String filename)
+	public Document(File file)
 	{
 		try {
-			infile = new File(filename);
-			scanner = new Scanner(infile);
+			scanner = new Scanner(file);
 		} catch (Exception e) {
-			standardOutput<-println("Could not open " + filename + "\n");
+			standardOutput<-println("Could not open\n");
 		}
 		
 		scanner.useDelimiter(" ");

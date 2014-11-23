@@ -44,8 +44,13 @@ behavior Tfdif {
 	}
 
     public void act(String[] args) {
-    	Document d = new Document("1.txt");
-       	d<-wordFrequency() @ 
-       	iterateHashmap(token);
+   		File[] files = new File("collection").listFiles();
+   		for(int i =0; i < files.length; i++){
+   			Document d = new Document(files[i]);
+   			d<-wordFrequency() @
+   			iterateHashmap(token);
+   		}
+    	
+
     }
 }
