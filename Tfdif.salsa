@@ -21,7 +21,7 @@ behavior Tfdif {
 	public void iterateHashmap(HashMap mp){
 		Iterator it = mp.entrySet().iterator();
 		while(it.hasNext()){
-			HashMap.Entry pairs = (HashMap.Entry)it.next();
+			Map.Entry pairs = (Map.Entry)it.next();
         	standardOutput<-println(pairs.getKey() + " = " + pairs.getValue());
         	
 		}
