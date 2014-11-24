@@ -26,7 +26,7 @@ behavior Tfdif {
 	}
 	
 
-	private void incTotalHashmap(HashMap docMap)
+	public void incTotalHashmap(HashMap docMap)
 	{
 		Iterator it = docMap.entrySet().iterator();
 		while(it.hasNext()){
@@ -45,12 +45,9 @@ behavior Tfdif {
 		standardOutput<-println(totalMap.size());
 	}
 
-	private void iterateHashmap(HashMap mp){
-		Iterator it = mp.entrySet().iterator();
-		while(it.hasNext()){
-			Map.Entry pairs = (Map.Entry)it.next();
-        	standardOutput<-println(pairs.getKey() + " = " + pairs.getValue());
-		}
+	public HashMap getMap()
+	{
+		return totalMap;
 	}
 	
 
@@ -69,66 +66,5 @@ behavior Tfdif {
 		return Math.log10((noDocs)/(1+termInDoc));
 	}
 
-	Object[] getObj(Object[] o)
-	{
-		return o;
-	}
 
-	HashMap[] getHashmaps(Document[] docs)
-	{
-		join
-		{
-			for(int i=0; i < docs.length; i++)
-			{
-				docs[i]<-wordFrequency();
-			} 
-		} @ getObj(token) @ currentContinuation;
-	}
-
-	public void compute()
-	{
-		join
-		{
-			File[] files = new File("collection").listFiles();
-			standardOutput<-println("BIG DICK!");
-	   		for(int i =0; i < files.length; i++){
-	   			//standardOutput<-println("On file #" + i);
-	   			Document d = new Document(files[i]);
-				d<-wordFrequency() @
-				incTotalHashmap(token) @
-				standardOutput<-println(totalMap.size());
-			}
-		} @ standardOutput<-println("Done with hashmap" + totalMap.size());
-		standardOutput<-println("WHAT THE BITCH!");
-		//HashMap[] maps = getHashmaps(d);
-
-/**
-   		standardOutput<-println("maps.length = " + maps.length);
-   		for(int i =0; i < files.length; i++){
-   			standardOutput<-println("Summing total #" + i);
-	   		Iterator it = maps[i].entrySet().iterator();
-			while(it.hasNext()){
-				Map.Entry pairs = (Map.Entry)it.next();
-	        	String word = (String)pairs.getKey();
-	        	Object o = totalMap.get(word);
-				if(o != null)
-				{
-					totalMap.put(word, ((int)o)+(int)pairs.getValue());
-				}
-				else
-				{
-					totalMap.put(word, pairs.getValue());
-				}
-			}
-   		}
-   		*/
-   		iterateHashmap(totalMap);
-	}
-
-    public void act(String[] args) {
-    	compute();
-    	//standardOutput<-println("Done " + totalMap.size());
-    	
-   		
-    }
 }
