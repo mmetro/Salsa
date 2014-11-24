@@ -12,6 +12,12 @@ import java.util.*;
 
 behavior Tfdif {
 	
+	private HashMap totalMap;
+
+	public Tfdif()
+	{
+		totalMap = new HashMap();
+	}
 
 	public  int findTerm(HashMap mp, String term){
 		int val =(int)mp.get(term);
@@ -20,7 +26,26 @@ behavior Tfdif {
 	}
 	
 
-	public void iterateHashmap(HashMap mp){
+	private void incTotalHashmap(HashMap docMap)
+	{
+		Iterator it = docMap.entrySet().iterator();
+		while(it.hasNext()){
+			Map.Entry pairs = (Map.Entry)it.next();
+        	String word = (String)pairs.getKey();
+        	Object o = totalMap.get(word);
+			if(o != null)
+			{
+				totalMap.put(word, ((int)o)+(int)pairs.getValue());
+			}
+			else
+			{
+				totalMap.put(word, pairs.getValue());
+			}
+		}
+		standardOutput<-println(totalMap.size());
+	}
+
+	private void iterateHashmap(HashMap mp){
 		Iterator it = mp.entrySet().iterator();
 		while(it.hasNext()){
 			Map.Entry pairs = (Map.Entry)it.next();
@@ -60,18 +85,24 @@ behavior Tfdif {
 		} @ getObj(token) @ currentContinuation;
 	}
 
-    public void act(String[] args) {
-    	HashMap totalMap = new HashMap();
-   		File[] files = new File("collection").listFiles();
-		Document[] d = new Document[files.length];
-		standardOutput<-println("BIG DICK!");
-   		for(int i =0; i < files.length; i++){
-   			//standardOutput<-println("On file #" + i);
-   			d[i] = new Document(files[i]);
-		}
+	public void compute()
+	{
+		join
+		{
+			File[] files = new File("collection").listFiles();
+			standardOutput<-println("BIG DICK!");
+	   		for(int i =0; i < files.length; i++){
+	   			//standardOutput<-println("On file #" + i);
+	   			Document d = new Document(files[i]);
+				d<-wordFrequency() @
+				incTotalHashmap(token) @
+				standardOutput<-println(totalMap.size());
+			}
+		} @ standardOutput<-println("Done with hashmap" + totalMap.size());
 		standardOutput<-println("WHAT THE BITCH!");
-		HashMap[] maps = getHashmaps(d);
+		//HashMap[] maps = getHashmaps(d);
 
+/**
    		standardOutput<-println("maps.length = " + maps.length);
    		for(int i =0; i < files.length; i++){
    			standardOutput<-println("Summing total #" + i);
@@ -90,6 +121,14 @@ behavior Tfdif {
 				}
 			}
    		}
+   		*/
    		iterateHashmap(totalMap);
+	}
+
+    public void act(String[] args) {
+    	compute();
+    	//standardOutput<-println("Done " + totalMap.size());
+    	
+   		
     }
 }
