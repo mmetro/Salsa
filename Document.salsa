@@ -24,6 +24,13 @@ behavior Document
 		newMap.putAll(hashmap);
 		return newMap;
 	}
+	public void iterateTreeMap(TreeMap map){
+		Iterator it = map.entrySet().iterator();
+		while(it.hasNext()){
+			Map.Entry pairs = (Map.Entry)it.next();
+        	standardOutput<-println(pairs.getKey() + "in TREEMAP = " + pairs.getValue());
+		}
+	}
 	public HashMap wordFrequency()
 	{	
 		while (scanner.hasNext()) 
@@ -41,7 +48,8 @@ behavior Document
       	}
       	return map;
 	}
-	public TreeMap getTreeMap(){
+	public TreeMap getTreeMap()
+	{
 		return newMap;
 	}
 	public HashMap getMap()
@@ -49,4 +57,6 @@ behavior Document
 		return map;
 	}
 }
+
+
 

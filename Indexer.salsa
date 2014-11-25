@@ -41,12 +41,18 @@ behavior Indexer {
 				ds<-storeDocMap(d,i) @
 				d<-getMap() @
 				d<-makeTreeMap(token) @
+				d<-iterateTreeMap(token) @
 				d<-getMap() @
 				t<-incTotalHashmap(token);
 				
 			}
 		} @ t<-getMap() 
-		@hashMapSize(token) @ strintcat("Final size: ", token) @ standardOutput<-println(token) @ iterateHashmap(token);
-		standardOutput<-println("WHAT THE BsITCH!");
+		@hashMapSize(token) 
+		@ strintcat("Final size: ", token)
+		@ standardOutput<-println(token)
+		@t<-getMap()
+   		@ iterateHashmap(token)
+   		@standardOutput<-println("WHAT THE BsITCH!");
     }
 }
+

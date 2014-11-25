@@ -290,6 +290,20 @@ public class Document extends UniversalActor  {
 			newMap.putAll(hashmap);
 			return newMap;
 		}
+		public void iterateTreeMap(TreeMap map) {
+			Iterator it = map.entrySet().iterator();
+			while (it.hasNext()) {
+				Map.Entry pairs = (Map.Entry)it.next();
+				{
+					// standardOutput<-println(pairs.getKey()+"in TREEMAP = "+pairs.getValue())
+					{
+						Object _arguments[] = { pairs.getKey()+"in TREEMAP = "+pairs.getValue() };
+						Message message = new Message( self, standardOutput, "println", _arguments, null, null );
+						__messages.add( message );
+					}
+				}
+			}
+		}
 		public HashMap wordFrequency() {
 			while (scanner.hasNext()) {
 				String word = scanner.next();

@@ -296,6 +296,8 @@ public class Indexer extends UniversalActor  {
 				Token token_2_2 = new Token();
 				Token token_2_3 = new Token();
 				Token token_2_4 = new Token();
+				Token token_2_5 = new Token();
+				Token token_2_6 = new Token();
 				// join block
 				token_2_0.setJoinDirector();
 				File[] files = new File("collection").listFiles();
@@ -308,6 +310,7 @@ public class Indexer extends UniversalActor  {
 						Token token_4_2 = new Token();
 						Token token_4_3 = new Token();
 						Token token_4_4 = new Token();
+						Token token_4_5 = new Token();
 						// d<-wordFrequency()
 						{
 							Object _arguments[] = {  };
@@ -332,16 +335,22 @@ public class Indexer extends UniversalActor  {
 							Message message = new Message( self, d, "makeTreeMap", _arguments, token_4_2, token_4_3 );
 							__messages.add( message );
 						}
+						// d<-iterateTreeMap(token)
+						{
+							Object _arguments[] = { token_4_3 };
+							Message message = new Message( self, d, "iterateTreeMap", _arguments, token_4_3, token_4_4 );
+							__messages.add( message );
+						}
 						// d<-getMap()
 						{
 							Object _arguments[] = {  };
-							Message message = new Message( self, d, "getMap", _arguments, token_4_3, token_4_4 );
+							Message message = new Message( self, d, "getMap", _arguments, token_4_4, token_4_5 );
 							__messages.add( message );
 						}
 						// t<-incTotalHashmap(token)
 						{
-							Object _arguments[] = { token_4_4 };
-							Message message = new Message( self, t, "incTotalHashmap", _arguments, token_4_4, token_2_0 );
+							Object _arguments[] = { token_4_5 };
+							Message message = new Message( self, t, "incTotalHashmap", _arguments, token_4_5, token_2_0 );
 							__messages.add( message );
 						}
 					}
@@ -371,18 +380,22 @@ public class Indexer extends UniversalActor  {
 					Message message = new Message( self, standardOutput, "println", _arguments, token_2_3, token_2_4 );
 					__messages.add( message );
 				}
-				// iterateHashmap(token)
+				// t<-getMap()
 				{
-					Object _arguments[] = { token_2_4 };
-					Message message = new Message( self, self, "iterateHashmap", _arguments, token_2_4, null );
+					Object _arguments[] = {  };
+					Message message = new Message( self, t, "getMap", _arguments, token_2_4, token_2_5 );
 					__messages.add( message );
 				}
-			}
-			{
+				// iterateHashmap(token)
+				{
+					Object _arguments[] = { token_2_5 };
+					Message message = new Message( self, self, "iterateHashmap", _arguments, token_2_5, token_2_6 );
+					__messages.add( message );
+				}
 				// standardOutput<-println("WHAT THE BsITCH!")
 				{
 					Object _arguments[] = { "WHAT THE BsITCH!" };
-					Message message = new Message( self, standardOutput, "println", _arguments, null, null );
+					Message message = new Message( self, standardOutput, "println", _arguments, token_2_6, null );
 					__messages.add( message );
 				}
 			}
