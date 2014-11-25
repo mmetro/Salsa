@@ -1,8 +1,7 @@
 module search;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 behavior Document
 {
@@ -10,9 +9,10 @@ behavior Document
 	private File infile;
 	private Scanner scanner;
 	private HashMap map;
-
+	private TreeMap newMap;
 	public Document(File file)
 	{
+		newMap = new TreeMap();
 		map = new HashMap();
 		try {
 			scanner = new Scanner(file);
@@ -20,7 +20,10 @@ behavior Document
 			standardOutput<-println("Could not open\n");
 		}
 	}
-
+	public TreeMap makeTreeMap(HashMap hashmap){
+		newMap.putAll(hashmap);
+		return newMap;
+	}
 	public HashMap wordFrequency()
 	{	
 		while (scanner.hasNext()) 
@@ -38,7 +41,9 @@ behavior Document
       	}
       	return map;
 	}
-
+	public TreeMap getTreeMap(){
+		return newMap;
+	}
 	public HashMap getMap()
 	{
 		return map;

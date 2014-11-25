@@ -1,0 +1,24 @@
+module search;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Scanner;
+
+behavior DocumentSearch
+{
+	private Document[] docArray;
+	public DocumentSearch(int len)
+	{
+		docArray = new Document[len];
+	}
+
+	public void storeDocMap(Document doc, int i)
+	{
+		docArray[i] = doc;
+	}
+	public Document getDocMap(int i)
+	{
+		return docArray[i];
+	}
+}
+

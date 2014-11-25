@@ -29,27 +29,24 @@ behavior Indexer {
 	}
 
     public void act(String[] args) {
-
+    	
     	Tfdif t = new Tfdif();
     	join
 		{
 			File[] files = new File("collection").listFiles();
-			standardOutput<-println("BIG DICK!");
+			DocumentSearch ds = new DocumentSearch(files.length);
 	   		for(int i =0; i < files.length; i++){
 	   			Document d = new Document(files[i]);
-	   			t<-getMap() @
-				hashMapSize(token) @
-				strintcat("Top loop size: ", token) @
 				d<-wordFrequency() @
-				t<-incTotalHashmap(token) @
-				t<-getMap() @
-				hashMapSize(token) @
-				strintcat("Bottom loop size: ", token) @
-				standardOutput<-println(token);
+				ds<-storeDocMap(d,i) @
+				d<-getMap() @
+				d<-makeTreeMap(token) @
+				d<-getMap() @
+				t<-incTotalHashmap(token);
+				
 			}
-		} @ t<-getMap() @hashMapSize(token) @ strintcat("Final size: ", token) @ standardOutput<-println(token)
-		@ t<-getMap() 
-   		@ iterateHashmap(token);
-		standardOutput<-println("WHAT THE BITCH!");
+		} @ t<-getMap() 
+		@hashMapSize(token) @ strintcat("Final size: ", token) @ standardOutput<-println(token) @ iterateHashmap(token);
+		standardOutput<-println("WHAT THE BsITCH!");
     }
 }
